@@ -18,3 +18,7 @@ const httpServer = http.createServer(app);
 httpServer.listen(80, () => {
     console.log('HTTP Server running on http://localhost:80');
 });
+
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST
+Access-Control-Allow-Headers: Content-Type
