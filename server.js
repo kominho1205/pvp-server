@@ -3,10 +3,11 @@ const http = require('http'); // https는 사용하지 않음
 
 const app = express();
 
-// CORS 설정 (필요한 경우)
+// CORS 설정 (모든 요청을 허용)
 const cors = require('cors');
-app.use(cors());  // 모든 요청을 허용 (개발 중에는 이 설정을 사용)
+app.use(cors()); // 개발 중에는 모든 요청 허용
 
+// 기본 라우트
 app.get('/', (req, res) => {
     res.send('Hello from the HTTP server!');
 });
@@ -18,7 +19,3 @@ const httpServer = http.createServer(app);
 httpServer.listen(80, () => {
     console.log('HTTP Server running on http://localhost:80');
 });
-
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Methods: GET, POST
-Access-Control-Allow-Headers: Content-Type
