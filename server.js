@@ -1,18 +1,32 @@
-const express = require('express');
-const cors = require('cors');  // CORS 모듈 추가
+// 기존 Node.js 서버에 express 추가
 
+const express = require('express');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
+
+// Express 앱 초기화
 const app = express();
 
-// CORS를 모든 도메인에서 오는 요청을 허용하도록 설정
-app.use(cors());
+// CORS 설정 (필요한 경우)
+const cors = require('cors');
+app.use(cors());  // 모든 요청을 허용 (개발 중에는 이 설정을 사용)
 
-// 기본 라우트 설정 (GET 요청 처리)
 app.get('/', (req, res) => {
-    res.json({ status: 'connected' });  // 서버 응답
+    res.send('Hello from the server!');
 });
 
+// 기존의 http 또는 https 서버를 Express.js와 함께 사용
+const httpServer = http.createServer(app);  // HTTP 서버
+const httpsServer = https.createServer({
+    key: fs.readFileSync('path/to/your/private.key'),
+    cert: fs.readFileSync('path/to/your/certificate.crt')
+}, app);  // HTTPS 서버
+
 // 서버 실행
-const port = process.env.PORT || 10000;
-app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+httpServer.listen(80, () => {
+    console.log('HTTP Server running on http://localhost:80');
+});
+httpsServer.listen(443, () => {
+    console.log('HTTPS Server running on https://localhost:443');
 });
