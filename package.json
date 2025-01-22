@@ -1,16 +1,11 @@
 {
   "name": "pvp-server",
   "version": "1.0.0",
-<<<<<<< HEAD
+
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
-=======
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
->>>>>>> 30eb9ca (Initial commit with package.json)
   },
   "repository": {
     "type": "git",
@@ -19,21 +14,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-<<<<<<< HEAD
   "bugs": {
     "url": "https://github.com/kominho1205/pvp-server/issues"
   },
   "homepage": "https://github.com/kominho1205/pvp-server#readme",
-  "description": ""
-=======
-<<<<<<< HEAD
   "description": "",
   "dependencies": {
     "express": "^4.21.2",
     "socket.io": "^4.8.1"
   }
-=======
-  "description": ""
->>>>>>> 30eb9ca (Initial commit with package.json)
->>>>>>> afc46c6f8192455069da4ae08a9efcdf12ed0056
 }
