@@ -27,3 +27,10 @@ const httpServer = http.createServer(app);
 httpServer.listen(80, () => {
     console.log('HTTP Server running on http://localhost:80');
 });
+
+app.use((req, res, next) => {
+    res.header('Cache-Control', 'no-store'); // 캐시 비활성화
+    res.header('Pragma', 'no-cache');
+    res.header('Expires', '0');
+    next();
+});
