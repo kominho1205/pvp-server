@@ -1,8 +1,11 @@
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());  // CORS 허용
+
 const server = http.createServer(app);
 const io = new Server(server);
 
@@ -30,7 +33,9 @@ io.on("connection", (socket) => {
     });
 });
 
+// Render에서 제공하는 포트 사용
 const PORT = process.env.PORT || 3000;
+
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
