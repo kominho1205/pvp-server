@@ -1,5 +1,5 @@
 const express = require('express');
-const http = require('http'); // https는 사용하지 않음
+const http = require('http'); // HTTPS는 사용하지 않음
 
 const app = express();
 
@@ -9,7 +9,7 @@ app.use(cors()); // 개발 중에는 모든 요청 허용
 
 // 기본 라우트
 app.get('/', (req, res) => {
-    res.send('Hello from the HTTP server!');
+    res.status(200).contentType('text/plain').send('Hello from the HTTP server!');
 });
 
 // HTTP 서버만 실행 (HTTPS는 사용하지 않음)
