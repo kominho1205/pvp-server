@@ -1,43 +1,20 @@
 const express = require('express');
-const http = require('http');
-const https = require('https');
-const fs = require('fs');
+const http = require('http'); // https는 사용하지 않음
 
 const app = express();
 
-// CORS 설정
+// CORS 설정 (필요한 경우)
 const cors = require('cors');
-app.use(cors());  // 모든 도메인에서 요청을 허용
+app.use(cors());  // 모든 요청을 허용 (개발 중에는 이 설정을 사용)
 
 app.get('/', (req, res) => {
     res.send('Hello from the HTTP server!');
 });
 
-// HTTP 서버 설정
+// HTTP 서버만 실행 (HTTPS는 사용하지 않음)
 const httpServer = http.createServer(app);
 
-// HTTPS 서버 설정 (SSL 인증서 필요)
-const httpsOptions = {
-    key: fs.readFileSync('path/to/your/private.key'),
-    cert: fs.readFileSync('path/to/your/certificate.crt')
-};
-const httpsServer = https.createServer(httpsOptions, app);
-
-// HTTP에서 HTTPS로 리디렉션
-app.use((req, res, next) => {
-    if (req.protocol === 'http') {
-        res.redirect(301, `https://${req.headers.host}${req.url}`);
-    } else {
-        next();
-    }
-});
-
-// HTTP 서버 실행 (포트 80)
+// HTTP 서버 실행 (80번 포트에서 실행)
 httpServer.listen(80, () => {
     console.log('HTTP Server running on http://localhost:80');
-});
-
-// HTTPS 서버 실행 (포트 443)
-httpsServer.listen(443, () => {
-    console.log('HTTPS Server running on https://localhost:443');
 });
