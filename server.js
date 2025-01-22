@@ -1,41 +1,11 @@
-const express = require("express");
-const http = require("http");
-const { Server } = require("socket.io");
-const cors = require("cors");
-
+const express = require('express');
 const app = express();
-app.use(cors());  // CORS 허용
 
-const server = http.createServer(app);
-const io = new Server(server);
-
-let players = {};
-
-io.on("connection", (socket) => {
-    console.log(`Player connected: ${socket.id}`);
-
-    players[socket.id] = { x: 0, y: 0, hp: 100 };
-
-    socket.broadcast.emit("player-joined", { id: socket.id, ...players[socket.id] });
-
-    socket.on("update-position", (data) => {
-        if (players[socket.id]) {
-            players[socket.id].x = data.x;
-            players[socket.id].y = data.y;
-            io.emit("update-players", players);
-        }
-    });
-
-    socket.on("disconnect", () => {
-        console.log(`Player disconnected: ${socket.id}`);
-        delete players[socket.id];
-        io.emit("player-left", socket.id);
-    });
+// 루트 경로 처리 ("/" 경로에 대해 응답을 보냄)
+app.get('/', (req, res) => {
+    res.send('Hello, World!');  // 간단한 메시지를 보내는 예시
 });
 
-// Render에서 제공하는 포트 사용
-const PORT = process.env.PORT || 3000;
-
-server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(10000, () => {
+    console.log('Server is running on port 10000');
 });
