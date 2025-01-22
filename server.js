@@ -1,11 +1,18 @@
 const express = require('express');
+const cors = require('cors');  // CORS 모듈 추가
+
 const app = express();
 
-// 루트 경로 처리 ("/" 경로에 대해 응답을 보냄)
+// CORS를 모든 도메인에서 오는 요청을 허용하도록 설정
+app.use(cors());
+
+// 기본 라우트 설정 (GET 요청 처리)
 app.get('/', (req, res) => {
-    res.send('Hello, World!');  // 간단한 메시지를 보내는 예시
+    res.json({ status: 'connected' });  // 서버 응답
 });
 
-app.listen(10000, () => {
-    console.log('Server is running on port 10000');
+// 서버 실행
+const port = process.env.PORT || 10000;
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
 });
