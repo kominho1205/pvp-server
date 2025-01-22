@@ -1,7 +1,6 @@
 {
   "name": "pvp-server",
   "version": "1.0.0",
-
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,6 +21,10 @@
   "dependencies": {
     "express": "^4.21.2",
     "socket.io": "^4.8.1",
+<<<<<<< HEAD
     "cors": "^2.8.5"
+=======
+    "ws": "^8.18.0"
+>>>>>>> 3345b09f8a5724c24d1ef58e7bb6aa2e6d3dffe2
   }
 }
