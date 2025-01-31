@@ -38,7 +38,7 @@ app.post('/match', (req, res) => {
 
     // 두 명이 매칭되면 룸 8로 이동하도록 알림
     if (players.length === 2) {
-        res.json({ matched: true, room: 8 });  // 매칭된 경우 룸 8로 이동
+        res.json({ matched: true, room: 'Room8' });  // 매칭된 경우 룸 8로 이동
         players = [];  // 매칭된 플레이어들은 비웁니다.
     } else {
         res.json({ matched: false });  // 매칭되지 않음
