@@ -1,5 +1,5 @@
 {
-<<<<<<< HEAD
+
   "name": "chat-server",
   "version": "1.0.0",
   "type": "module",
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "ws": "^8.13.0"
-=======
+
   "type": "module",
   "name": "chat-server",
   "version": "1.0.0",
