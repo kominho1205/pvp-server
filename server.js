@@ -7,6 +7,7 @@ const wss  = new WebSocketServer({ port: PORT });
 const rooms = new Map();
 
 wss.on("connection", ws => {
+  console.log("클라이언트 접속됨");
   ws.on("message", raw => {
     let msg;
     try { msg = JSON.parse(raw); } catch { return; }
