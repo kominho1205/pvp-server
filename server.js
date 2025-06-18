@@ -3,7 +3,6 @@ import { WebSocketServer } from "ws";
 
 const port = process.env.PORT || 443;
 const server = http.createServer((req, res) => {
-  // 기본 HTTP 응답 (Health Check 포함)
   if (req.url === "/health") {
     res.writeHead(200);
     return res.end("OK");
@@ -12,22 +11,26 @@ const server = http.createServer((req, res) => {
   res.end("OK");
 });
 
-// WebSocket 서버 인스턴스 (noServer 모드)
-const wss = new WebSocketServer({ noServer: true });
-const rooms = new Map();
+// noServer 모드로 생성하며, 클라이언트가 제안한 프로토콜을 그대로 선택해 응답
+const wss = new WebSocketServer({
+  noServer: true,
+  handleProtocols: (protocols, request) => {
+    // GameMaker가 요청하는 프로토콜 리스트(protocols)에 들어있다면 그 값을 그대로 반환
+    // (대개 첫 번째 요소가 됩니다)
+    return protocols[0];
+  }
+});
 
-// HTTP → WebSocket Upgrade 처리
 server.on("upgrade", (req, socket, head) => {
   wss.handleUpgrade(req, socket, head, (ws) => {
     wss.emit("connection", ws, req);
   });
 });
 
-// WebSocket 연결 핸들러
 wss.on("connection", (ws) => {
   console.log("클라이언트 접속됨");
 
-  // 연결 즉시 ACK(시스템 메시지) 보내기
+  // 연결 즉시 ACK (핸드셰이크 확인용)
   ws.send(JSON.stringify({ type: "system", data: "HANDSHAKE_OK" }));
 
   ws.on("message", (raw) => {
