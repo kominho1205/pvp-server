@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "chat-server",
   "version": "1.0.0",
   "type": "module",
@@ -8,5 +9,32 @@
   },
   "dependencies": {
     "ws": "^8.13.0"
+=======
+  "type": "module",
+  "name": "chat-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kominho1205/pvp-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kominho1205/pvp-server/issues"
+  },
+  "homepage": "https://github.com/kominho1205/pvp-server#readme",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1",
+    "ws": "^8.18.0"
+>>>>>>> 4713fd3a885f77a74539a21c30497cd9d0cb11bc
   }
 }
